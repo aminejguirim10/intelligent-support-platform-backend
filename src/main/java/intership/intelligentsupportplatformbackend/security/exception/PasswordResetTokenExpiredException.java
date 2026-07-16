@@ -1,0 +1,7 @@
+package intership.intelligentsupportplatformbackend.security.exception;
+
+public class PasswordResetTokenExpiredException extends RuntimeException {
+    public PasswordResetTokenExpiredException(String message) {
+        super(message);
+    }
+}
