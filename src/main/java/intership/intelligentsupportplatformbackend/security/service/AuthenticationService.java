@@ -280,6 +280,7 @@ public class AuthenticationService {
                 .password(encodedPassword)
                 .role(role)
                 .phoneNumber(request.getPhoneNumber())
+                .createdAt(java.time.LocalDateTime.now())
                 .build();
     }
 }
