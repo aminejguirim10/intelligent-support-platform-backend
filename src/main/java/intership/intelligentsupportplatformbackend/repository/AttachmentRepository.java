@@ -11,4 +11,6 @@ public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
     Optional<Attachment> findByIdAndTicketIsNull(Long id);
 
     List<Attachment> findByIdInAndTicketIsNull(List<Long> ids);
+
+    List<Attachment> findByIdIn(List<Long> ids);
 }

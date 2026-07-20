@@ -168,6 +168,19 @@ public class TicketService {
             ticket.setSource(TicketSource.valueOf(request.getSource().toUpperCase()));
         }
 
+        // Update attachments
+        if (request.getAttachmentIds() != null) {
+            // Clear existing attachments
+            if (ticket.getAttachments() != null) {
+                ticket.getAttachments().forEach(a -> a.setTicket(null));
+            }
+
+            // Add new attachments
+            List<Attachment> newAttachments = attachmentRepository.findByIdIn(request.getAttachmentIds());
+            newAttachments.forEach(a -> a.setTicket(ticket));
+            ticket.setAttachments(newAttachments);
+        }
+
         Ticket updatedTicket = ticketRepository.save(ticket);
         return mapToResponse(updatedTicket);
     }

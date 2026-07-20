@@ -226,6 +226,7 @@ public class AuthenticationService {
                 .refreshToken(refreshToken)
                 .tokenType("Bearer")
                 .expiresIn(jwtService.getJwtExpiration() / 1000) // Convert to seconds
+                .id(user.getId())
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .build();

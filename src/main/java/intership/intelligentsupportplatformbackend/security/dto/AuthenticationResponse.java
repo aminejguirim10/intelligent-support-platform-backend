@@ -26,6 +26,7 @@ public class AuthenticationResponse {
     @JsonProperty("expires_in")
     private Long expiresIn;
 
+    private Long id;
     private String email;
     private String role;
 }

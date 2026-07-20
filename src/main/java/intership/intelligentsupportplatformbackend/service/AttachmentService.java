@@ -41,8 +41,8 @@ public class AttachmentService {
 
     @Transactional
     public void deleteAttachment(Long id) {
-        Attachment attachment = attachmentRepository.findByIdAndTicketIsNull(id)
-                .orElseThrow(() -> new AttachmentNotFoundException("Attachment not found or already linked to a ticket: " + id));
+        Attachment attachment = attachmentRepository.findById(id)
+                .orElseThrow(() -> new AttachmentNotFoundException("Attachment not found with id: " + id));
         attachmentRepository.delete(attachment);
     }
 
