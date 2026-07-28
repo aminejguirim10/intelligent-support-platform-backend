@@ -229,6 +229,8 @@ public class AuthenticationService {
                 .id(user.getId())
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .name(user.getName())
+                .profilePhotoUrl(user.getProfilePhotoUrl())
                 .build();
     }
 

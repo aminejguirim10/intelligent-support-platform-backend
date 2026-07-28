@@ -1,6 +1,7 @@
 package intership.intelligentsupportplatformbackend.service;
 
 import intership.intelligentsupportplatformbackend.dto.*;
+import intership.intelligentsupportplatformbackend.dto.AIAnalysis.AnalysisRequest;
 import intership.intelligentsupportplatformbackend.dto.AIAnalysis.AnalysisResponse;
 import intership.intelligentsupportplatformbackend.dto.Attachment.AttachmentResponse;
 import intership.intelligentsupportplatformbackend.dto.Ticket.TicketRequest;
@@ -9,6 +10,7 @@ import intership.intelligentsupportplatformbackend.exception.TicketNotFoundExcep
 import intership.intelligentsupportplatformbackend.exception.UnauthorizedAccessException;
 import intership.intelligentsupportplatformbackend.exception.UserNotFoundException;
 import intership.intelligentsupportplatformbackend.model.*;
+import intership.intelligentsupportplatformbackend.repository.AIAnalysisRepository;
 import intership.intelligentsupportplatformbackend.repository.AttachmentRepository;
 import intership.intelligentsupportplatformbackend.repository.TicketRepository;
 import intership.intelligentsupportplatformbackend.repository.UserRepository;
@@ -32,6 +34,7 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final UserRepository userRepository;
     private final AttachmentRepository attachmentRepository;
+    private final AIAnalysisRepository aiAnalysisRepository;
 
     @Transactional
     public TicketResponse createTicket(TicketRequest request) {
@@ -44,7 +47,7 @@ public class TicketService {
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .status(TicketStatus.OPEN)
-                .source(request.getSource() != null ? TicketSource.valueOf(request.getSource().toUpperCase()) : null)
+                .source(request.getSource() != null ? TicketSource.valueOf(request.getSource().toUpperCase()) : TicketSource.WEB)
                 .createdAt(java.time.LocalDateTime.now())
                 .user(user)
                 .build();
@@ -59,6 +62,23 @@ public class TicketService {
         }
 
         Ticket savedTicket = ticketRepository.save(ticket);
+
+        // Save AI analysis if provided
+        if (request.getAiAnalysis() != null) {
+            AnalysisRequest aiRequest = request.getAiAnalysis();
+            AIAnalysis analysis = AIAnalysis.builder()
+                    .category(aiRequest.getCategory() != null ? TicketCategory.valueOf(aiRequest.getCategory().toUpperCase()) : null)
+                    .priority(aiRequest.getPriority() != null ? TicketPriority.valueOf(aiRequest.getPriority().toUpperCase()) : null)
+                    .sentiment(aiRequest.getSentiment())
+                    .keywords(aiRequest.getKeywords())
+                    .confidenceScore(aiRequest.getConfidenceScore())
+                    .createdAt(java.time.LocalDateTime.now())
+                    .ticket(savedTicket)
+                    .build();
+            
+            aiAnalysisRepository.save(analysis);
+        }
+
         return mapToResponse(savedTicket);
     }
 

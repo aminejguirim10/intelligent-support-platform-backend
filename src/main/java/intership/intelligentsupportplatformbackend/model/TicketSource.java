@@ -3,5 +3,8 @@ package intership.intelligentsupportplatformbackend.model;
 public enum TicketSource {
     WEB,
     CHAT,
-    CSV
+    CSV,
+    PDF,
+    DOCX,
+    TXT
 }

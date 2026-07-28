@@ -1,5 +1,6 @@
 package intership.intelligentsupportplatformbackend.dto.Ticket;
 
+import intership.intelligentsupportplatformbackend.dto.AIAnalysis.AnalysisRequest;
 import intership.intelligentsupportplatformbackend.model.TicketSource;
 import intership.intelligentsupportplatformbackend.model.TicketStatus;
 import intership.intelligentsupportplatformbackend.util.ValidEnum;
@@ -35,4 +36,6 @@ public class TicketRequest {
     private String status;
 
     private List<Long> attachmentIds;
+
+    private AnalysisRequest aiAnalysis;
 }

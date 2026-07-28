@@ -111,7 +111,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             // Token is invalid, continue without setting authentication
-            logger.error("JWT token validation failed: " + e.getMessage());
         }
 
         filterChain.doFilter(request, response);
