@@ -1,0 +1,68 @@
+# Maven build output
+target/
+!target/*.jar
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDE files
+.idea/
+.vscode/
+.classpath
+.project
+.settings
+*.iml
+*.iws
+*.ipr
+.factorypath
+.springBeans
+.sts4-cache
+.apt_generated
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+HELP.md
+README.md
+*.md
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose*.yml
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Build artifacts
+build/
+dist/
+out/
