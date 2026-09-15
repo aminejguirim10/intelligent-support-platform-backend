@@ -35,4 +35,8 @@ public class AnalysisRequest {
 
     @NotNull(message = "Confidence Score is required")
     private Double confidenceScore;
+
+    @NotBlank(message = "Advice is required")
+    @Size(max = 500, message = "Advice must not exceed 500 characters")
+    private String advice;
 }

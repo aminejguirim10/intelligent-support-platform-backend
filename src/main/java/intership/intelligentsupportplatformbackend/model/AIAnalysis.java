@@ -32,6 +32,9 @@ public class AIAnalysis {
 
     private Double confidenceScore;
 
+    @Column(columnDefinition="TEXT")
+    private String advice;
+
     private LocalDateTime createdAt;
 
     @ManyToOne

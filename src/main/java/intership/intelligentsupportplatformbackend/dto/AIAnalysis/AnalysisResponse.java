@@ -21,6 +21,7 @@ public class AnalysisResponse {
     private String sentiment;
     private String keywords;
     private Double confidenceScore;
+    private String advice;
     private LocalDateTime createdAt;
     private Long ticketId;
 }

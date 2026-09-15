@@ -72,10 +72,11 @@ public class TicketService {
                     .sentiment(aiRequest.getSentiment())
                     .keywords(aiRequest.getKeywords())
                     .confidenceScore(aiRequest.getConfidenceScore())
+                    .advice(aiRequest.getAdvice())
                     .createdAt(java.time.LocalDateTime.now())
                     .ticket(savedTicket)
                     .build();
-            
+
             aiAnalysisRepository.save(analysis);
         }
 
@@ -271,6 +272,7 @@ public class TicketService {
                 .sentiment(analysis.getSentiment())
                 .keywords(analysis.getKeywords())
                 .confidenceScore(analysis.getConfidenceScore())
+                .advice(analysis.getAdvice())
                 .createdAt(analysis.getCreatedAt())
                 .ticketId(analysis.getTicket() != null ? analysis.getTicket().getId() : null)
                 .build();

@@ -51,6 +51,7 @@ public class AnalysisService {
                 .sentiment(request.getSentiment())
                 .keywords(request.getKeywords())
                 .confidenceScore(request.getConfidenceScore())
+                .advice(request.getAdvice())
                 .createdAt(LocalDateTime.now())
                 .ticket(ticket)
                 .build();
@@ -91,6 +92,9 @@ public class AnalysisService {
         if (request.getConfidenceScore() != null) {
             analysis.setConfidenceScore(request.getConfidenceScore());
         }
+        if (request.getAdvice() != null) {
+            analysis.setAdvice(request.getAdvice());
+        }
 
         AIAnalysis updatedAnalysis = analysisRepository.save(analysis);
         return mapToResponse(updatedAnalysis);
@@ -124,6 +128,7 @@ public class AnalysisService {
                 .sentiment(analysis.getSentiment())
                 .keywords(analysis.getKeywords())
                 .confidenceScore(analysis.getConfidenceScore())
+                .advice(analysis.getAdvice())
                 .createdAt(analysis.getCreatedAt())
                 .ticketId(analysis.getTicket() != null ? analysis.getTicket().getId() : null)
                 .build();
