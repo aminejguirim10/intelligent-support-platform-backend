@@ -301,12 +301,6 @@ The application uses the following main entities:
 3. Run the test suite.
 4. Open a pull request with a clear description of the change.
 
-## 👥 Collaborators
-
-- Mohamed Amine Jguirim
-- Fares Tekaya
-- Firas Hizem
-
 ## 📄 License
 
 This project is part of the Intelligent Support Platform internship project.
